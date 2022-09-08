@@ -3,13 +3,17 @@ import { CgCheck } from 'react-icons/cg'
 import { MdAdd } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from 'store/features/cartSlice'
+import { addToFav } from 'store/features/favSlice'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 const Product = ({ product }) => {
 	const { title, price, image } = product
-	const [icon, setIcon] = useState(false)
+	const [add, setAdd] = useState(false)
+	const [fav, setFav] = useState(false)
 	const dispatch = useDispatch()
 
 	const cartItems = useSelector((state) => state.cartSlice.cartItems)
+	const favItems = useSelector((state) => state.favSlice.favItems)
 
 	function formattedNumber(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
@@ -19,14 +23,33 @@ const Product = ({ product }) => {
 		dispatch(addToCart(product))
 	}
 
+	const addToFavHandler = () => {
+		dispatch(addToFav(product))
+	}
+
 	useEffect(() => {
 		const cartItemIndex = cartItems.find((item) => item.id === product.id)
+		const favItemIndex = favItems.find((item) => item.id === product.id)
 
-		setIcon(cartItemIndex)
-	}, [cartItems, product.id])
+		setAdd(cartItemIndex)
+		setFav(favItemIndex)
+	}, [cartItems, product.id, favItems])
 
 	return (
-		<div className='border border-[#F3F3F3] p-8 rounded-[40px] space-y-3 hover:shadow-lg transition-all hover:-translate-y-2'>
+		<div className='border border-[#F3F3F3] p-8 rounded-[40px] space-y-3 hover:shadow-lg transition-all hover:-translate-y-2 relative'>
+			<button
+				type='button'
+				className={`${
+					fav ? 'bg-red-100' : null
+				} absolute top-6 left-6 p-2 rounded-[7px] border border-[#F8F8F8] outline-none`}
+				onClick={addToFavHandler}
+			>
+				{!fav ? (
+					<AiOutlineHeart size={20} className='text-[#ECECEC]' />
+				) : (
+					<AiFillHeart size={20} className='text-red-400' />
+				)}
+			</button>
 			<div>
 				<img
 					src={image}
@@ -47,11 +70,11 @@ const Product = ({ product }) => {
 				<button
 					type='button'
 					className={`border border-[#F2F2F2] p-[5px] rounded-lg outline-none ${
-						icon ? 'added' : null
+						add ? 'added' : null
 					}`}
 					onClick={addToCartHandler}
 				>
-					{!icon ? (
+					{!add ? (
 						<MdAdd color='#D3D3D3' size={25} />
 					) : (
 						<CgCheck size={25} color='#fff' />
