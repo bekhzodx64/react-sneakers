@@ -23,7 +23,7 @@ const Favourites = () => {
 							<p className='opacity-40'>Вы ничего не добавляли в закладки</p>
 						</div>
 					</div>
-					<Button />
+					<Button name='Вернуться назад' left />
 				</div>
 			) : (
 				<div className='px-10'>

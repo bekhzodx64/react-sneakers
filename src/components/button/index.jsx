@@ -1,7 +1,7 @@
-import { HiArrowLeft } from 'react-icons/hi'
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
 
-const Button = () => {
+const Button = ({ name, width, right, left }) => {
 	const navigate = useNavigate()
 
 	const navigateHandler = () => {
@@ -11,11 +11,14 @@ const Button = () => {
 	return (
 		<button
 			type='button'
-			className='flex items-center mx-auto space-x-3 px-8 py-5 bg-[#9DD458] text-white rounded-[18px]'
+			className={`flex items-center justify-center mx-auto space-x-3 px-8 py-5 bg-[#9DD458] text-white rounded-[18px] ${
+				width ? width : null
+			}`}
 			onClick={navigateHandler}
 		>
-			<HiArrowLeft size={20} />
-			<p>Вернуться назад</p>
+			{left && <HiArrowLeft size={20} />}
+			<p>{name}</p>
+			{right && <HiArrowRight size={20} />}
 		</button>
 	)
 }

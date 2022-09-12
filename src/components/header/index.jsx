@@ -4,8 +4,16 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { RiHeartFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import Cart from 'components/cart'
+import { useState } from 'react'
 
 const Header = () => {
+	const [showCart, setShowCart] = useState(false)
+
+	const showCartHandler = () => {
+		setShowCart(!showCart)
+	}
+
 	return (
 		<header className='flex justify-between items-center px-11 pb-11 border-b border-gray-200 -mx-5'>
 			<Link to='/'>
@@ -20,7 +28,10 @@ const Header = () => {
 
 			<ul className='flex space-x-5'>
 				<li className='flex items-center text-sm'>
-					<button className='flex items-center space-x-3'>
+					<button
+						className='flex items-center space-x-3'
+						onClick={showCartHandler}
+					>
 						<FaShoppingCart color='#9B9B9B' size={25} />
 					</button>
 				</li>
@@ -41,6 +52,8 @@ const Header = () => {
 					</NavLink>
 				</li>
 			</ul>
+
+			{!showCart && <Cart showCartHandler={showCartHandler} />}
 		</header>
 	)
 }

@@ -11,7 +11,7 @@ const Profile = () => {
 						<p className='opacity-40'>Оформите хотя бы один заказ</p>
 					</div>
 				</div>
-				<Button />
+				<Button name='Вернуться назад' left />
 			</div>
 		</main>
 	)

@@ -65,7 +65,7 @@ const Product = ({ product }) => {
 					<p className='font-medium text-[#BDBDBD] text-xs select-none'>
 						Цена:
 					</p>
-					<p className='font-bold text-sm'>{formattedNumber(price)} сум</p>
+					<p className='font-bold text-sm'>{formattedNumber(price)} UZS</p>
 				</div>
 				<button
 					type='button'
