@@ -13,7 +13,7 @@ const Costs = () => {
 
 	return (
 		<Fragment>
-			<div className='flex items-center space-x-2'>
+			<div className='flex items-center space-x-2 mt-2'>
 				<p>Налог 3%:</p>
 				<p className='border-b border-dashed flex-grow pt-3'></p>
 				<p className='font-semibold'>
