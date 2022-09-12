@@ -44,9 +44,7 @@ const Cart = ({ showCartHandler }) => {
 				)}
 
 				<div className='mt-7'>
-					{cartItems.length === 0 ? (
-						<Button name='Вернуться назад' left />
-					) : (
+					{cartItems.length !== 0 && (
 						<Button name='Оформить заказ' width='w-full' right />
 					)}
 				</div>
