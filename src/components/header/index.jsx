@@ -10,6 +10,7 @@ const Header = () => {
 	const [showCart, setShowCart] = useState(false)
 
 	const showCartHandler = () => {
+		document.body.style.overflow = 'visible'
 		setShowCart(!showCart)
 	}
 

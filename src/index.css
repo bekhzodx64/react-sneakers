@@ -7,6 +7,15 @@
 		@apply min-h-screen flex flex-col justify-center items-center bg-[#E7F6FF] py-16 font-['Inter'];
 	}
 
+	::-webkit-scrollbar {
+		@apply bg-white w-4;
+	}
+
+	::-webkit-scrollbar-thumb {
+		border: 4px solid transparent;
+		@apply bg-[#9DD458] rounded-full bg-clip-content;
+	}
+
 	.root {
 		@apply w-full;
 	}

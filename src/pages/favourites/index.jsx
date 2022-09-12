@@ -13,7 +13,7 @@ const Favourites = () => {
 	}
 
 	return (
-		<main className='min-h-[50vh] flex flex-col justify-center items-center pt-11'>
+		<main className='min-h-[60vh] flex flex-col justify-center items-center pt-11'>
 			{favItems.length === 0 ? (
 				<div className='space-y-12'>
 					<div className='text-center space-y-3'>

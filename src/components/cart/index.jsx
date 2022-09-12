@@ -12,6 +12,7 @@ const Cart = ({ showCartHandler }) => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
+		document.body.style.overflow = 'hidden'
 		dispatch(getTotals())
 	}, [dispatch, cartItems])
 

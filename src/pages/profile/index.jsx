@@ -2,7 +2,7 @@ import Button from 'components/button'
 
 const Profile = () => {
 	return (
-		<main className='min-h-[50vh] flex flex-col justify-center items-center pt-11'>
+		<main className='min-h-[60vh] flex flex-col justify-center items-center pt-11'>
 			<div className='space-y-12'>
 				<div className='text-center space-y-3'>
 					<span className='text-7xl select-none'>😔</span>

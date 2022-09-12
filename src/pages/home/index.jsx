@@ -15,7 +15,7 @@ const Home = () => {
 	}
 
 	return (
-		<main className='min-h-[50vh] pt-9'>
+		<main className='min-h-[60vh] pt-9'>
 			<div>
 				<Swiper
 					modules={[Navigation]}
