@@ -1,13 +1,21 @@
+import emptyBox from 'assets/images/box.png'
 import Button from 'components/button'
 import CartProduct from 'components/cart/cartProduct'
-import ReactDOM from 'react-dom'
-import Costs from './costs'
-import { useSelector } from 'react-redux'
 import { Fragment } from 'react'
-import emptyBox from 'assets/images/box.png'
+import ReactDOM from 'react-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import Costs from './costs'
+
+import { getTotals } from 'store/features/cartSlice'
+import { useEffect } from 'react'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(getTotals())
+	}, [dispatch, cartItems])
 
 	return ReactDOM.createPortal(
 		<div className='fixed inset-0 bg-black/50 z-50' onClick={showCartHandler}>
