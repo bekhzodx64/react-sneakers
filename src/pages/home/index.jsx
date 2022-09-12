@@ -1,10 +1,10 @@
 import Product from 'components/product'
 import { banners, sneakers } from 'db'
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import { FiSearch } from 'react-icons/fi'
 import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 const Home = () => {
 	return (

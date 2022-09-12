@@ -1,13 +1,11 @@
 import emptyBox from 'assets/images/box.png'
 import Button from 'components/button'
 import CartProduct from 'components/cart/cartProduct'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import Costs from './costs'
-
+import { useDispatch, useSelector } from 'react-redux'
 import { getTotals } from 'store/features/cartSlice'
-import { useEffect } from 'react'
+import Costs from './costs'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
@@ -20,7 +18,7 @@ const Cart = ({ showCartHandler }) => {
 	return ReactDOM.createPortal(
 		<div className='fixed inset-0 bg-black/50 z-50' onClick={showCartHandler}>
 			<div
-				className='flex flex-col bg-white ml-auto max-w-sm w-full p-8 min-h-screen'
+				className='flex flex-col bg-white ml-auto max-w-sm w-full p-8 h-full'
 				onClick={(e) => e.stopPropagation()}
 			>
 				<h2 className='font-bold text-2xl mb-5'>Корзина</h2>

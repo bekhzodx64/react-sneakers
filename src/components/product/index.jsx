@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { CgCheck } from 'react-icons/cg'
 import { MdAdd } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from 'store/features/cartSlice'
 import { addToFav } from 'store/features/favSlice'
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 const Product = ({ product }) => {
 	const { title, price, image } = product

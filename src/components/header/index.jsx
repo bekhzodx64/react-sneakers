@@ -1,11 +1,9 @@
 import logo from 'assets/images/logo.png'
-import { FaUserCircle } from 'react-icons/fa'
-import { FaShoppingCart } from 'react-icons/fa'
-import { RiHeartFill } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
 import Cart from 'components/cart'
 import { useState } from 'react'
+import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
+import { RiHeartFill } from 'react-icons/ri'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
 	const [showCart, setShowCart] = useState(false)

@@ -1,7 +1,7 @@
 import Button from 'components/button'
-import { useSelector } from 'react-redux'
 import Product from 'components/product'
 import { HiChevronLeft } from 'react-icons/hi'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Favourites = () => {
