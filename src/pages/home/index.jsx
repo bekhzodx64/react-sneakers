@@ -5,8 +5,25 @@ import { FiSearch } from 'react-icons/fi'
 import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 const Home = () => {
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm()
+
+	const [searchValue, setSearchValue] = useState('')
+
+	const onSubmit = (data, e) => {
+		e.target.reset()
+		// setSearchValue(data)
+		console.log(data)
+	}
+
 	return (
 		<main className='min-h-[50vh] pt-9'>
 			<div>
@@ -42,11 +59,22 @@ const Home = () => {
 			<div className='flex justify-between items-center px-10 mt-10'>
 				<h2 className='font-bold text-[32px]'>Все кроссовки</h2>
 				<div className='relative'>
-					<input
-						type='search'
-						placeholder='Поиск...'
-						className='border border-[#F3F3F3] rounded-lg py-3 pl-11 pr-2 outline-none text-sm'
-					/>
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<input
+							type='search'
+							placeholder={`${
+								errors.search?.type === 'required'
+									? 'Введите запрос'
+									: 'Поиск...'
+							}`}
+							className={`border ${
+								errors.search?.type === 'required'
+									? 'border-red-400 placeholder:text-red-400'
+									: 'border-[#F3F3F3]'
+							}  rounded-lg py-3 pl-11 pr-2 outline-none text-sm`}
+							{...register('search', { required: true })}
+						/>
+					</form>
 					<div className='absolute left-3 top-0 translate-y-1/2 select-none pointer-events-none'>
 						<FiSearch color='#E4E4E4' size={23} />
 					</div>
