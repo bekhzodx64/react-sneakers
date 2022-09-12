@@ -1,7 +1,14 @@
 import { IoClose } from 'react-icons/io5'
+import { useDispatch } from 'react-redux'
+import { removeFromCart } from 'store/features/cartSlice'
 
 const CartProduct = ({ cartItem }) => {
 	const { image, title, price } = cartItem
+	const dispatch = useDispatch()
+
+	const removeHandler = () => {
+		dispatch(removeFromCart(cartItem))
+	}
 
 	function formattedNumber(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
@@ -23,6 +30,7 @@ const CartProduct = ({ cartItem }) => {
 			<button
 				type='button'
 				className='text-[#B5B5B5] border border-[#DBDBDB] p-2 rounded-lg'
+				onClick={removeHandler}
 			>
 				<IoClose size={18} />
 			</button>
