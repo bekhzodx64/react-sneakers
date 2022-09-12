@@ -5,30 +5,14 @@ import { FiSearch } from 'react-icons/fi'
 import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useForm } from 'react-hook-form'
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 
 const Home = () => {
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { errors },
-	} = useForm()
-
 	const [searchValue, setSearchValue] = useState('')
 
-	const onSubmit = (data, e) => {
-		e.target.reset()
-		setSearchValue(data)
-		console.log(data)
+	const onSearch = (e) => {
+		setSearchValue(e.target.value)
 	}
-
-	const filteredItems = useMemo(() => {
-		return sneakers.filter((sneaker) =>
-			sneaker.title.toLowerCase().includes(searchValue.search)
-		)
-	}, [searchValue, sneakers])
 
 	return (
 		<main className='min-h-[50vh] pt-9'>
@@ -63,24 +47,17 @@ const Home = () => {
 			</div>
 
 			<div className='flex justify-between items-center px-10 mt-10'>
-				<h2 className='font-bold text-[32px]'>Все кроссовки</h2>
+				<h2 className='font-bold text-[32px]'>
+					{searchValue ? 'Результаты поиска' : 'Все кроссовки'}
+				</h2>
 				<div className='relative'>
-					<form onSubmit={handleSubmit(onSubmit)}>
-						<input
-							type='search'
-							placeholder={`${
-								errors.search?.type === 'required'
-									? 'Введите запрос'
-									: 'Поиск...'
-							}`}
-							className={`border ${
-								errors.search?.type === 'required'
-									? 'border-red-400 placeholder:text-red-400'
-									: 'border-[#F3F3F3]'
-							}  rounded-lg py-3 pl-11 pr-2 outline-none text-sm`}
-							{...register('search', { required: true })}
-						/>
-					</form>
+					<input
+						type='search'
+						placeholder='Поиск'
+						onChange={onSearch}
+						value={searchValue}
+						className='border border-[#F3F3F3] rounded-lg py-3 pl-11 pr-2 outline-none text-sm'
+					/>
 					<div className='absolute left-3 top-0 translate-y-1/2 select-none pointer-events-none'>
 						<FiSearch color='#E4E4E4' size={23} />
 					</div>
@@ -88,9 +65,13 @@ const Home = () => {
 			</div>
 
 			<div className='grid grid-cols-4 gap-5 mt-10 px-10'>
-				{filteredItems.map((product) => (
-					<Product key={product.id} product={product} />
-				))}
+				{sneakers
+					.filter((item) =>
+						item.title.toLowerCase().includes(searchValue.toLowerCase())
+					)
+					.map((product) => (
+						<Product key={product.id} product={product} />
+					))}
 			</div>
 		</main>
 	)

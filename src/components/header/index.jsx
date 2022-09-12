@@ -1,8 +1,9 @@
 import logo from 'assets/images/logo.png'
 import Cart from 'components/cart'
 import { useState } from 'react'
-import { FaShoppingCart, FaUserCircle } from 'react-icons/fa'
-import { RiHeartFill } from 'react-icons/ri'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { BsCart2 } from 'react-icons/bs'
+import { RiUser3Fill, RiUser3Line } from 'react-icons/ri'
 import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
@@ -30,7 +31,7 @@ const Header = () => {
 						className='flex items-center space-x-3'
 						onClick={showCartHandler}
 					>
-						<FaShoppingCart color='#9B9B9B' size={25} />
+						<BsCart2 color='#9B9B9B' size={25} />
 					</button>
 				</li>
 				<li className='flex items-center text-sm'>
@@ -38,7 +39,13 @@ const Header = () => {
 						to='/favourites'
 						className={({ isActive }) => (isActive ? 'activeH' : 'disabled')}
 					>
-						<RiHeartFill size={25} />
+						{({ isActive }) =>
+							isActive ? (
+								<AiFillHeart size={25} />
+							) : (
+								<AiOutlineHeart size={25} />
+							)
+						}
 					</NavLink>
 				</li>
 				<li className='flex items-center text-sm'>
@@ -46,7 +53,9 @@ const Header = () => {
 						to='/profile'
 						className={({ isActive }) => (isActive ? 'activeO' : 'disabled')}
 					>
-						<FaUserCircle size={25} />
+						{({ isActive }) =>
+							isActive ? <RiUser3Fill size={25} /> : <RiUser3Line size={25} />
+						}
 					</NavLink>
 				</li>
 			</ul>
