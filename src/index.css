@@ -26,4 +26,8 @@
 	.added {
 		@apply bg-gradient-to-tl from-[#89F09C] to-[#3CC755] border-transparent;
 	}
+
+	.swiper-button-disabled {
+		@apply opacity-50;
+	}
 }

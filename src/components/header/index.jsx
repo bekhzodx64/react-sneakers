@@ -53,7 +53,7 @@ const Header = () => {
 				</li>
 			</ul>
 
-			{!showCart && <Cart showCartHandler={showCartHandler} />}
+			{showCart && <Cart showCartHandler={showCartHandler} />}
 		</header>
 	)
 }

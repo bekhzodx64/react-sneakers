@@ -1,3 +1,14 @@
+export const banners = [
+	{
+		id: 1,
+		image: './slider/banner.png',
+	},
+	{
+		id: 2,
+		image: './slider/banner.png',
+	},
+]
+
 export const sneakers = [
 	{
 		id: 1,

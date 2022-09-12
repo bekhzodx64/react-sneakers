@@ -1,11 +1,45 @@
 import Product from 'components/product'
-import { sneakers } from 'db'
+import { banners, sneakers } from 'db'
 import { FiSearch } from 'react-icons/fi'
+import { Navigation } from 'swiper'
+import 'swiper/css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 const Home = () => {
 	return (
 		<main className='min-h-[50vh] pt-9'>
-			<div className='flex justify-between items-center px-10'>
+			<div>
+				<Swiper
+					modules={[Navigation]}
+					spaceBetween={10}
+					navigation={{
+						prevEl: '.prev',
+						nextEl: '.next',
+					}}
+					className='relative'
+				>
+					{banners.map((banner) => (
+						<SwiperSlide key={banner.id}>
+							<div className='rounded-[20px] overflow-hidden'>
+								<img
+									src={banner.image}
+									alt='Banner'
+									className='w-full h-full object-cover'
+								/>
+							</div>
+						</SwiperSlide>
+					))}
+					<button className='prev w-9 h-9 rounded-full flex justify-center items-center bg-white shadow absolute left-5 top-1/2 -translate-y-1/2 z-10'>
+						<BsChevronLeft />
+					</button>
+					<button className='next w-9 h-9 rounded-full flex justify-center items-center bg-white shadow absolute right-5 top-1/2 -translate-y-1/2 z-10'>
+						<BsChevronRight />
+					</button>
+				</Swiper>
+			</div>
+
+			<div className='flex justify-between items-center px-10 mt-10'>
 				<h2 className='font-bold text-[32px]'>Все кроссовки</h2>
 				<div className='relative'>
 					<input

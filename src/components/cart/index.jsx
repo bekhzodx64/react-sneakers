@@ -10,7 +10,7 @@ const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
 
 	return ReactDOM.createPortal(
-		<div className='fixed inset-0 bg-black/50' onClick={showCartHandler}>
+		<div className='fixed inset-0 bg-black/50 z-50' onClick={showCartHandler}>
 			<div
 				className='flex flex-col bg-white ml-auto max-w-sm w-full p-8 min-h-screen'
 				onClick={(e) => e.stopPropagation()}
