@@ -6,7 +6,7 @@ import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 const Home = () => {
 	const {
@@ -20,9 +20,15 @@ const Home = () => {
 
 	const onSubmit = (data, e) => {
 		e.target.reset()
-		// setSearchValue(data)
+		setSearchValue(data)
 		console.log(data)
 	}
+
+	const filteredItems = useMemo(() => {
+		return sneakers.filter((sneaker) =>
+			sneaker.title.toLowerCase().includes(searchValue.search)
+		)
+	}, [searchValue, sneakers])
 
 	return (
 		<main className='min-h-[50vh] pt-9'>
@@ -82,7 +88,7 @@ const Home = () => {
 			</div>
 
 			<div className='grid grid-cols-4 gap-5 mt-10 px-10'>
-				{sneakers.map((product) => (
+				{filteredItems.map((product) => (
 					<Product key={product.id} product={product} />
 				))}
 			</div>
