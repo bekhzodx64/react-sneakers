@@ -21,7 +21,7 @@ const Home = () => {
 		const endOffset = itemOffset + itemsPerPage
 		setCurrentItems(sneakers.slice(itemOffset, endOffset))
 		setPageCount(Math.ceil(sneakers.length / itemsPerPage))
-	}, [itemOffset, itemsPerPage, sneakers])
+	}, [itemOffset, itemsPerPage])
 
 	const handlePageClick = (event) => {
 		const newOffset = (event.selected * itemsPerPage) % sneakers.length

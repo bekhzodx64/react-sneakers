@@ -29,7 +29,7 @@ const CartProduct = ({ cartItem }) => {
 			</div>
 			<button
 				type='button'
-				className='text-[#B5B5B5] border border-[#DBDBDB] p-2 rounded-lg'
+				className='text-[#B5B5B5] border border-[#DBDBDB] p-2 rounded-lg transition-all hover:text-red-500 hover:bg-red-100 hover:border-transparent'
 				onClick={removeHandler}
 			>
 				<IoClose size={18} />

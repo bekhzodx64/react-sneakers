@@ -40,12 +40,15 @@ const Product = ({ product }) => {
 			<button
 				type='button'
 				className={`${
-					fav ? 'bg-red-100' : null
-				} absolute top-6 left-6 p-2 rounded-[7px] border border-[#F8F8F8] outline-none`}
+					fav ? 'bg-red-100' : 'hover:bg-red-50'
+				} group absolute top-6 left-6 p-2 rounded-[7px] border border-[#F8F8F8] outline-none transition-all`}
 				onClick={addToFavHandler}
 			>
 				{!fav ? (
-					<AiOutlineHeart size={20} className='text-[#ECECEC]' />
+					<AiOutlineHeart
+						size={20}
+						className='text-[#ECECEC] group-hover:text-red-300 transition-all'
+					/>
 				) : (
 					<AiFillHeart size={20} className='text-red-400' />
 				)}
