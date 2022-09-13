@@ -6,10 +6,21 @@ import ReactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTotals } from 'store/features/cartSlice'
 import Costs from './costs'
+import { order } from 'store/features/orderSlice'
+import { nanoid } from '@reduxjs/toolkit'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
 	const dispatch = useDispatch()
+
+	const date = new Date()
+	const day = date.getDate()
+
+	let newOrder = {
+		id: nanoid(),
+		day,
+		items: cartItems,
+	}
 
 	useEffect(() => {
 		document.body.style.overflow = 'hidden'
@@ -46,7 +57,12 @@ const Cart = ({ showCartHandler }) => {
 
 				<div className='mt-7'>
 					{cartItems.length !== 0 && (
-						<Button name='Оформить заказ' width='w-full' right />
+						<Button
+							name='Оформить заказ'
+							width='w-full'
+							right
+							addItems={() => dispatch(order([newOrder]))}
+						/>
 					)}
 				</div>
 			</div>

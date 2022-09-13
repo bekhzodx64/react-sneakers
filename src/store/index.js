@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import cartSlice from './features/cartSlice'
 import favSlice from './features/favSlice'
+import orderSlice from './features/orderSlice'
 
 import {
 	persistStore,
@@ -17,6 +18,7 @@ import storage from 'redux-persist/lib/storage'
 const rootReducer = combineReducers({
 	cartSlice,
 	favSlice,
+	orderSlice,
 })
 
 const persistConfig = {
@@ -37,5 +39,4 @@ const store = configureStore({
 })
 
 export const persistor = persistStore(store)
-
 export default store
