@@ -4,7 +4,7 @@ import CartProduct from 'components/cart/cartProduct'
 import { Fragment, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTotals } from 'store/features/cartSlice'
+import { clearCart, getTotals } from 'store/features/cartSlice'
 import Costs from './costs'
 import { order } from 'store/features/orderSlice'
 import { nanoid } from '@reduxjs/toolkit'
@@ -20,6 +20,10 @@ const Cart = ({ showCartHandler }) => {
 		id: nanoid(),
 		day,
 		items: cartItems,
+	}
+
+	const clearCartHandler = () => {
+		dispatch(clearCart())
 	}
 
 	useEffect(() => {
@@ -61,7 +65,7 @@ const Cart = ({ showCartHandler }) => {
 							name='Оформить заказ'
 							width='w-full'
 							right
-							addItems={() => dispatch(order([newOrder]))}
+							addItems={(() => dispatch(order([newOrder])), clearCartHandler)}
 						/>
 					)}
 				</div>

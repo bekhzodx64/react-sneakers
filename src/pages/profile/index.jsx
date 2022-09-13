@@ -1,11 +1,13 @@
-import { useSelector } from 'react-redux'
 import Button from 'components/button'
 import { HiChevronLeft } from 'react-icons/hi'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { clearOrders } from 'store/features/orderSlice'
 
 const Profile = () => {
 	const { orderedItems } = useSelector((state) => state.orderSlice)
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
 	function formattedNumber(x) {
 		return x
@@ -16,6 +18,10 @@ const Profile = () => {
 
 	const navigateHandler = () => {
 		navigate('/')
+	}
+
+	const clearOrdersHandler = () => {
+		dispatch(clearOrders())
 	}
 
 	return (
@@ -33,16 +39,22 @@ const Profile = () => {
 				</div>
 			) : (
 				<div className='space-y-5 px-10'>
-					<div className='flex items-center space-x-3'>
-						<button
-							type='button'
-							className='border border-[#F2F2F2] rounded-lg px-1 py-1'
-							onClick={navigateHandler}
-						>
-							<HiChevronLeft color='#C8C8C8' size={20} />
+					<div className='flex items-center justify-between'>
+						<div className='flex items-center space-x-3'>
+							<button
+								type='button'
+								className='border border-[#F2F2F2] rounded-lg px-1 py-1'
+								onClick={navigateHandler}
+							>
+								<HiChevronLeft color='#C8C8C8' size={20} />
+							</button>
+							<h2 className='text-[32px] font-bold'>История заказов</h2>
+						</div>
+						<button type='button' onClick={clearOrdersHandler}>
+							Очистить историю покупок
 						</button>
-						<h2 className='text-[32px] font-bold'>История заказов</h2>
 					</div>
+
 					{orderedItems.map((item) => (
 						<div key={item.id} className='space-y-5 border rounded-3xl p-5'>
 							<div className='space-x-3'>
