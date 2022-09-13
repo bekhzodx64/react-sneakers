@@ -39,4 +39,24 @@
 	.swiper-button-disabled {
 		@apply opacity-50;
 	}
+
+	.pagination {
+		@apply flex justify-center space-x-3 pt-10 items-center select-none;
+	}
+
+	.pagination-num {
+		@apply rounded-full w-8 h-8 shadow-sm inline-flex items-center justify-center text-sm border;
+	}
+
+	.pagination-active {
+		@apply border-transparent bg-gradient-to-tl from-[#89F09C] to-[#3CC755] text-white;
+	}
+
+	.pagination-nav {
+		@apply text-sm;
+	}
+
+	.pagination-disabled {
+		@apply opacity-60 pointer-events-none;
+	}
 }

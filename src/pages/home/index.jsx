@@ -1,15 +1,32 @@
 import Product from 'components/product'
 import { banners, sneakers } from 'db'
+import { useState, useEffect } from 'react'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import { FiSearch } from 'react-icons/fi'
+import { IoClose } from 'react-icons/io5'
 import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useState } from 'react'
-import { IoClose } from 'react-icons/io5'
+import ReactPaginate from 'react-paginate'
 
 const Home = () => {
 	const [searchValue, setSearchValue] = useState('')
+
+	const [currentItems, setCurrentItems] = useState([])
+	const [pageCount, setPageCount] = useState(0)
+	const [itemOffset, setItemOffset] = useState(0)
+	const itemsPerPage = 8
+
+	useEffect(() => {
+		const endOffset = itemOffset + itemsPerPage
+		setCurrentItems(sneakers.slice(itemOffset, endOffset))
+		setPageCount(Math.ceil(sneakers.length / itemsPerPage))
+	}, [itemOffset, itemsPerPage, sneakers])
+
+	const handlePageClick = (event) => {
+		const newOffset = (event.selected * itemsPerPage) % sneakers.length
+		setItemOffset(newOffset)
+	}
 
 	const onSearch = (e) => {
 		setSearchValue(e.target.value)
@@ -75,14 +92,33 @@ const Home = () => {
 			</div>
 
 			<div className='grid grid-cols-4 gap-5 mt-10 px-10'>
-				{sneakers
-					.filter((item) =>
-						item.title.toLowerCase().includes(searchValue.toLowerCase())
-					)
-					.map((product) => (
-						<Product key={product.id} product={product} />
-					))}
+				{searchValue
+					? sneakers
+							.filter((item) =>
+								item.title.toLowerCase().includes(searchValue.toLowerCase())
+							)
+							.map((product) => <Product key={product.id} product={product} />)
+					: currentItems.map((product) => (
+							<Product key={product.id} product={product} />
+					  ))}
 			</div>
+
+			<ReactPaginate
+				breakLabel='...'
+				nextLabel='Вперед'
+				previousLabel='Назад'
+				onPageChange={handlePageClick}
+				pageRangeDisplayed={3}
+				pageCount={pageCount}
+				renderOnZeroPageCount={null}
+				containerClassName='pagination'
+				pageLinkClassName='pagination-num'
+				previousLinkClassName='pagination-nav'
+				nextLinkClassName='pagination-nav'
+				activeLinkClassName='pagination-active'
+				disabledClassName='pagination-disabled'
+				breakClassName='pagination-num'
+			/>
 		</main>
 	)
 }
