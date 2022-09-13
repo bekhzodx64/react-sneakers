@@ -17,7 +17,7 @@ const Header = () => {
 	return (
 		<header className='flex justify-between items-center px-11 pb-11 border-b border-gray-200 -mx-5'>
 			<Link to='/'>
-				<div className='flex space-x-4 items-center'>
+				<div className='flex space-x-4 items-center select-none'>
 					<img src={logo} alt='React Sneakers' className='w-10 h-10' />
 					<div>
 						<h2 className='font-bold text-xl uppercase'>react sneakers</h2>

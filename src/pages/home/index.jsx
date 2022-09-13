@@ -6,6 +6,7 @@ import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useState } from 'react'
+import { IoClose } from 'react-icons/io5'
 
 const Home = () => {
 	const [searchValue, setSearchValue] = useState('')
@@ -52,7 +53,7 @@ const Home = () => {
 				</h2>
 				<div className='relative'>
 					<input
-						type='search'
+						type='input'
 						placeholder='Поиск'
 						onChange={onSearch}
 						value={searchValue}
@@ -61,6 +62,15 @@ const Home = () => {
 					<div className='absolute left-3 top-0 translate-y-1/2 select-none pointer-events-none'>
 						<FiSearch color='#E4E4E4' size={23} />
 					</div>
+					{searchValue && (
+						<button
+							type='button'
+							className='absolute right-2 top-1/2 -translate-y-1/2 text-[#B5B5B5] border border-[#DBDBDB] p-1 rounded-lg'
+							onClick={() => setSearchValue('')}
+						>
+							<IoClose />
+						</button>
+					)}
 				</div>
 			</div>
 
