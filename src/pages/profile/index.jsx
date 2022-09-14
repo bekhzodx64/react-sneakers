@@ -3,11 +3,16 @@ import { HiChevronLeft } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { clearOrders } from 'store/features/orderSlice'
+import Confirm from 'components/templates/confirm'
+import { useState } from 'react'
+import { FiTrash2 } from 'react-icons/fi'
 
 const Profile = () => {
 	const { orderedItems } = useSelector((state) => state.orderSlice)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
+	const [showConfirm, setShowConfirm] = useState(false)
 
 	function formattedNumber(x) {
 		return x
@@ -20,8 +25,15 @@ const Profile = () => {
 		navigate('/')
 	}
 
+	const confirmHandler = () => {
+		document.body.style.overflow = 'visible'
+		setShowConfirm(!showConfirm)
+	}
+
 	const clearOrdersHandler = () => {
+		document.body.style.overflow = 'visible'
 		dispatch(clearOrders())
+		setShowConfirm(false)
 	}
 
 	return (
@@ -50,8 +62,13 @@ const Profile = () => {
 							</button>
 							<h2 className='text-[32px] font-bold'>История заказов</h2>
 						</div>
-						<button type='button' onClick={clearOrdersHandler}>
-							Очистить историю покупок
+						<button
+							type='button'
+							onClick={confirmHandler}
+							className='flex space-x-2 items-center border px-7 py-2 rounded-lg'
+						>
+							<FiTrash2 size={18} />
+							<p>Очистить историю покупок</p>
 						</button>
 					</div>
 
@@ -82,6 +99,13 @@ const Profile = () => {
 						</div>
 					))}
 				</div>
+			)}
+
+			{showConfirm && (
+				<Confirm
+					clearOrdersHandler={clearOrdersHandler}
+					confirmHandler={confirmHandler}
+				/>
 			)}
 		</main>
 	)

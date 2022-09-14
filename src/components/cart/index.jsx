@@ -1,13 +1,13 @@
+import { nanoid } from '@reduxjs/toolkit'
 import emptyBox from 'assets/images/box.png'
 import Button from 'components/button'
 import CartProduct from 'components/cart/cartProduct'
 import { Fragment, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearCart, getTotals } from 'store/features/cartSlice'
-import Costs from './costs'
+import { getTotals } from 'store/features/cartSlice'
 import { order } from 'store/features/orderSlice'
-import { nanoid } from '@reduxjs/toolkit'
+import Costs from './costs'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
@@ -22,8 +22,8 @@ const Cart = ({ showCartHandler }) => {
 		items: cartItems,
 	}
 
-	const clearCartHandler = () => {
-		dispatch(clearCart())
+	const newOrderHandler = () => {
+		dispatch(order([newOrder]))
 	}
 
 	useEffect(() => {
@@ -65,7 +65,7 @@ const Cart = ({ showCartHandler }) => {
 							name='Оформить заказ'
 							width='w-full'
 							right
-							addItems={(() => dispatch(order([newOrder])), clearCartHandler)}
+							addItems={newOrderHandler}
 						/>
 					)}
 				</div>
