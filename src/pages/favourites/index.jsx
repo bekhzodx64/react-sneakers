@@ -1,6 +1,5 @@
-import Button from 'components/button'
 import Product from 'components/product'
-import { HiChevronLeft } from 'react-icons/hi'
+import { HiArrowLeft, HiChevronLeft } from 'react-icons/hi'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,7 +22,14 @@ const Favourites = () => {
 							<p className='opacity-40'>Вы ничего не добавляли в закладки</p>
 						</div>
 					</div>
-					<Button name='Вернуться назад' left />
+					<button
+						type='button'
+						className='flex items-center justify-center mx-auto space-x-3 px-8 py-5 bg-[#9DD458] text-white rounded-[18px]'
+						onClick={navigateHandler}
+					>
+						<HiArrowLeft size={20} />
+						<p>Вернуться назад</p>
+					</button>
 				</div>
 			) : (
 				<div className='px-10'>

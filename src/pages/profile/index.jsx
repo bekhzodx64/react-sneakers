@@ -1,11 +1,10 @@
-import Button from 'components/button'
-import { HiChevronLeft } from 'react-icons/hi'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { clearOrders } from 'store/features/orderSlice'
 import Confirm from 'components/templates/confirm'
 import { useState } from 'react'
 import { FiTrash2 } from 'react-icons/fi'
+import { HiArrowLeft, HiChevronLeft } from 'react-icons/hi'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { clearOrders } from 'store/features/orderSlice'
 
 const Profile = () => {
 	const { orderedItems } = useSelector((state) => state.orderSlice)
@@ -47,7 +46,14 @@ const Profile = () => {
 							<p className='opacity-40'>Оформите хотя бы один заказ</p>
 						</div>
 					</div>
-					<Button name='Вернуться назад' left />
+					<button
+						type='button'
+						className='flex items-center justify-center mx-auto space-x-3 px-8 py-5 bg-[#9DD458] text-white rounded-[18px]'
+						onClick={navigateHandler}
+					>
+						<HiArrowLeft size={20} />
+						<p>Вернуться назад</p>
+					</button>
 				</div>
 			) : (
 				<div className='space-y-5 px-10'>

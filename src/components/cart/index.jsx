@@ -1,9 +1,9 @@
 import { nanoid } from '@reduxjs/toolkit'
 import emptyBox from 'assets/images/box.png'
-import Button from 'components/button'
 import CartProduct from 'components/cart/cartProduct'
 import { Fragment, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { HiArrowRight } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTotals } from 'store/features/cartSlice'
 import { order } from 'store/features/orderSlice'
@@ -61,12 +61,14 @@ const Cart = ({ showCartHandler }) => {
 
 				<div className='mt-7'>
 					{cartItems.length !== 0 && (
-						<Button
-							name='Оформить заказ'
-							width='w-full'
-							right
-							addItems={newOrderHandler}
-						/>
+						<button
+							type='button'
+							className='flex items-center justify-center mx-auto space-x-3 px-8 py-5 bg-[#9DD458] text-white rounded-[18px] w-full'
+							onClick={newOrderHandler}
+						>
+							<p>Оформить заказ</p>
+							<HiArrowRight size={20} />
+						</button>
 					)}
 				</div>
 			</div>

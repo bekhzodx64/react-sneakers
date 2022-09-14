@@ -1,13 +1,13 @@
 import Product from 'components/product'
 import { banners, sneakers } from 'db'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 import { FiSearch } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
+import ReactPaginate from 'react-paginate'
 import { Navigation } from 'swiper'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import ReactPaginate from 'react-paginate'
 
 const Home = () => {
 	const [searchValue, setSearchValue] = useState('')
