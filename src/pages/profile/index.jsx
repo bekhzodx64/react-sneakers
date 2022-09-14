@@ -80,9 +80,17 @@ const Profile = () => {
 
 					{orderedItems.map((item) => (
 						<div key={item.id} className='space-y-5 border rounded-3xl p-5'>
-							<div className='space-x-3'>
-								<span className='select-none'>Заказ ID:</span>
-								<span className='font-bold select-all'>{item.id}</span>
+							<div className='flex items-center justify-between'>
+								<div className='space-x-2'>
+									<span className='select-none'>Заказ ID:</span>
+									<span className='font-bold select-all'>{item.id}</span>
+								</div>
+								<div className='space-x-2'>
+									<span>Дата:</span>
+									<span>{item.customDate}</span>
+									<span>Время:</span>
+									<span>{item.time}</span>
+								</div>
 							</div>
 							{item.items.map((product, index) => (
 								<div

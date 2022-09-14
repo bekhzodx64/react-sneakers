@@ -8,22 +8,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTotals } from 'store/features/cartSlice'
 import { order } from 'store/features/orderSlice'
 import Costs from './costs'
+import { clearCart } from 'store/features/cartSlice'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
 	const dispatch = useDispatch()
 
 	const date = new Date()
-	const day = date.getDate()
+	const customDate = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
+	const time = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
 	let newOrder = {
 		id: nanoid(),
-		day,
+		customDate,
+		time,
 		items: cartItems,
 	}
 
 	const newOrderHandler = () => {
 		dispatch(order([newOrder]))
+		dispatch(clearCart())
 	}
 
 	useEffect(() => {
