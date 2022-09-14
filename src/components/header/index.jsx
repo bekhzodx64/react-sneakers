@@ -1,17 +1,28 @@
 import logo from 'assets/images/logo.png'
 import Cart from 'components/cart'
+import Success from 'components/templates/success'
 import { useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 import { RiUser3Fill, RiUser3Line } from 'react-icons/ri'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
+import { changeStatus } from 'store/features/orderSlice'
 
 const Header = () => {
+	const dispatch = useDispatch()
 	const [showCart, setShowCart] = useState(false)
+	const { showSuccess } = useSelector((state) => state.orderSlice)
+	console.log(showSuccess)
 
 	const showCartHandler = () => {
 		document.body.style.overflow = 'visible'
 		setShowCart(!showCart)
+	}
+
+	const showSuccessHandler = () => {
+		document.body.style.overflow = 'visible'
+		dispatch(changeStatus())
 	}
 
 	return (
@@ -62,6 +73,7 @@ const Header = () => {
 			</ul>
 
 			{showCart && <Cart showCartHandler={showCartHandler} />}
+			{showSuccess && <Success showSuccessHandler={showSuccessHandler} />}
 		</header>
 	)
 }

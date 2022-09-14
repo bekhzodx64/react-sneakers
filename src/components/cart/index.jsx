@@ -5,10 +5,9 @@ import { Fragment, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { HiArrowRight } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTotals } from 'store/features/cartSlice'
-import { order } from 'store/features/orderSlice'
+import { clearCart, getTotals } from 'store/features/cartSlice'
+import { changeStatus, order } from 'store/features/orderSlice'
 import Costs from './costs'
-import { clearCart } from 'store/features/cartSlice'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
@@ -28,6 +27,8 @@ const Cart = ({ showCartHandler }) => {
 	const newOrderHandler = () => {
 		dispatch(order([newOrder]))
 		dispatch(clearCart())
+		showCartHandler()
+		dispatch(changeStatus())
 	}
 
 	useEffect(() => {
