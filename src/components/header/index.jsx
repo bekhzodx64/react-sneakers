@@ -13,7 +13,6 @@ const Header = () => {
 	const dispatch = useDispatch()
 	const [showCart, setShowCart] = useState(false)
 	const { showSuccess } = useSelector((state) => state.orderSlice)
-	console.log(showSuccess)
 
 	const showCartHandler = () => {
 		document.body.style.overflow = 'visible'

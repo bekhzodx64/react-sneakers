@@ -17,13 +17,15 @@ const Costs = () => {
 				<p>Налог 3%:</p>
 				<p className='border-b border-dashed flex-grow pt-3'></p>
 				<p className='font-semibold'>
-					{formattedNumber((totalPrice * 3) / 100)} UZS
+					{totalPrice && formattedNumber((totalPrice * 3) / 100)} UZS
 				</p>
 			</div>
 			<div className='flex items-center space-x-2'>
 				<p>Итого:</p>
 				<p className='border-b border-dashed flex-grow pt-3'></p>
-				<p className='font-semibold'>{formattedNumber(totalPrice)} UZS</p>
+				<p className='font-semibold'>
+					{totalPrice && formattedNumber(totalPrice)} UZS
+				</p>
 			</div>
 		</Fragment>
 	)
