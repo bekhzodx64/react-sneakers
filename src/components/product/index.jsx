@@ -36,7 +36,7 @@ const Product = ({ product }) => {
 	}, [cartItems, product.id, favItems])
 
 	return (
-		<div className='border border-[#F3F3F3] p-8 rounded-[40px] space-y-3 hover:shadow-lg transition-all hover:-translate-y-2 relative'>
+		<div className='border border-[#F3F3F3] w-full max-w-[250px] p-8 rounded-[40px] space-y-3 hover:shadow-lg transition-all hover:-translate-y-2 relative'>
 			<button
 				type='button'
 				className={`${

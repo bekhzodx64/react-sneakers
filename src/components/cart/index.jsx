@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearCart, getTotals } from 'store/features/cartSlice'
 import { changeStatus, order } from 'store/features/orderSlice'
 import Costs from './costs'
+import { IoClose } from 'react-icons/io5'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
@@ -39,10 +40,20 @@ const Cart = ({ showCartHandler }) => {
 	return ReactDOM.createPortal(
 		<div className='fixed inset-0 bg-black/50 z-50' onClick={showCartHandler}>
 			<div
-				className='flex flex-col bg-white ml-auto max-w-sm w-full p-8 h-full'
+				className='flex flex-col bg-white ml-auto sm:max-w-sm w-full p-8 h-full'
 				onClick={(e) => e.stopPropagation()}
 			>
-				<h2 className='font-bold text-2xl mb-5'>Корзина</h2>
+				<div className='flex items-center justify-between 	mb-5'>
+					<h2 className='font-bold text-2xl'>Корзина</h2>
+					<button
+						type='button'
+						className='text-[#B5B5B5] border border-[#DBDBDB] p-2 rounded-lg transition-all hover:text-red-500 hover:bg-red-100 hover:border-transparent sm:hidden'
+						onClick={showCartHandler}
+					>
+						<IoClose size={18} />
+					</button>
+				</div>
+
 				{cartItems.length === 0 ? (
 					<div className='flex flex-col items-center my-auto space-y-3'>
 						<img src={emptyBox} alt='Корзина пустая' className='select-none' />

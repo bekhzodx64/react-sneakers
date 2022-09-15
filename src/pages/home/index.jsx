@@ -64,17 +64,17 @@ const Home = () => {
 				</Swiper>
 			</div>
 
-			<div className='flex justify-between items-center px-10 mt-10'>
-				<h2 className='font-bold text-[32px]'>
+			<div className='sm:flex text-center justify-between items-center sm:px-10 mt-10 space-y-3 sm:space-y-0'>
+				<h2 className='font-bold text-[28px] sm:text-[32px]'>
 					{searchValue ? 'Результаты поиска' : 'Все кроссовки'}
 				</h2>
-				<div className='relative'>
+				<div className='relative w-min mx-auto sm:mx-0'>
 					<input
 						type='input'
 						placeholder='Поиск'
 						onChange={onSearch}
 						value={searchValue}
-						className='border border-[#F3F3F3] rounded-lg py-3 pl-11 pr-2 outline-none text-sm'
+						className='border border-[#F3F3F3] rounded-lg py-3 pl-11 pr-2 outline-none text-sm max-w-sm'
 					/>
 					<div className='absolute left-3 top-0 translate-y-1/2 select-none pointer-events-none'>
 						<FiSearch color='#E4E4E4' size={23} />
@@ -91,7 +91,7 @@ const Home = () => {
 				</div>
 			</div>
 
-			<div className='grid grid-cols-4 gap-5 mt-10 px-10'>
+			<div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10 sm:px-10 place-content-center'>
 				{searchValue
 					? sneakers
 							.filter((item) =>

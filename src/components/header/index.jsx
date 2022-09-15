@@ -25,11 +25,15 @@ const Header = () => {
 	}
 
 	return (
-		<header className='flex justify-between items-center px-11 pb-11 border-b border-gray-200 -mx-5'>
+		<header className='flex justify-between items-center sm:px-11 pb-11 border-b border-gray-200 sm:-mx-5'>
 			<Link to='/'>
-				<div className='flex space-x-4 items-center select-none'>
+				<div className='flex space-x-2 sm:space-x-4 items-center select-none'>
 					<img src={logo} alt='React Sneakers' className='w-10 h-10' />
-					<div>
+					<div className='uppercase font-bold sm:hidden'>
+						<div>react</div>
+						<div>sneakers</div>
+					</div>
+					<div className='hidden sm:block'>
 						<h2 className='font-bold text-xl uppercase'>react sneakers</h2>
 						<h3 className='text-sm opacity-60'>Магазин лучших кроссовок</h3>
 					</div>

@@ -56,7 +56,7 @@ const Profile = () => {
 					</button>
 				</div>
 			) : (
-				<div className='space-y-5 px-10'>
+				<div className='space-y-5 md:px-10'>
 					<div className='flex items-center justify-between'>
 						<div className='flex items-center space-x-3'>
 							<button
@@ -74,28 +74,36 @@ const Profile = () => {
 							className='flex space-x-2 items-center border px-7 py-2 rounded-lg'
 						>
 							<FiTrash2 size={18} />
-							<p>Очистить историю покупок</p>
+							<p className='hidden md:block'>Очистить историю покупок</p>
 						</button>
 					</div>
 
 					{orderedItems.map((item) => (
 						<div key={item.id} className='space-y-5 border rounded-3xl p-5'>
 							<div className='flex items-center justify-between'>
-								<div className='space-x-2'>
-									<span className='select-none'>Заказ ID:</span>
-									<span className='font-bold select-all'>{item.id}</span>
+								<div className='md:space-x-2'>
+									<span className='select-none block md:inline-block'>
+										Заказ ID:
+									</span>
+									<span className='font-bold select-all block md:inline-block'>
+										{item.id}
+									</span>
 								</div>
-								<div className='space-x-2'>
-									<span>Дата:</span>
-									<span>{item.customDate}</span>
-									<span>Время:</span>
-									<span>{item.time}</span>
+								<div className='flex gap-4'>
+									<div>
+										<span className='block md:inline-block'>Дата:</span>
+										<span>{item.customDate}</span>
+									</div>
+									<div>
+										<span className='block md:inline-block'>Время:</span>
+										<span>{item.time}</span>
+									</div>
 								</div>
 							</div>
 							{item.items.map((product, index) => (
 								<div
 									key={index}
-									className='flex gap-5 items-center border rounded-[8px] overflow-hidden px-8 py-2'
+									className='flex gap-5 items-center border rounded-[8px] overflow-hidden px-3 md:px-8 py-2'
 								>
 									<div className='w-24 h-24'>
 										<img
@@ -104,7 +112,7 @@ const Profile = () => {
 											className='w-full h-full select-none object-scale-down'
 										/>
 									</div>
-									<h3 className='grow line-clamp-1'>{product.title}</h3>
+									<h3 className='grow line-clamp-2'>{product.title}</h3>
 									<p className='font-bold'>
 										{formattedNumber(product.price)} UZS
 									</p>

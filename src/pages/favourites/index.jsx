@@ -32,7 +32,7 @@ const Favourites = () => {
 					</button>
 				</div>
 			) : (
-				<div className='px-10'>
+				<div className='sm:px-10 w-full'>
 					<div className='flex items-center space-x-3'>
 						<button
 							type='button'
@@ -43,7 +43,7 @@ const Favourites = () => {
 						</button>
 						<h2 className='text-[32px] font-bold'>Мои закладки</h2>
 					</div>
-					<div className='grid grid-cols-4 gap-5 mt-10'>
+					<div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10 place-content-center'>
 						{favItems.map((favItem) => (
 							<Product key={favItem.id} product={favItem} />
 						))}
