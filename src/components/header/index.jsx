@@ -8,6 +8,7 @@ import { RiUser3Fill, RiUser3Line } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { changeStatus } from 'store/features/orderSlice'
+import { AnimatePresence } from 'framer-motion'
 
 const Header = () => {
 	const dispatch = useDispatch()
@@ -75,7 +76,9 @@ const Header = () => {
 				</li>
 			</ul>
 
-			{showCart && <Cart showCartHandler={showCartHandler} />}
+			<AnimatePresence>
+				{showCart && <Cart showCartHandler={showCartHandler} />}
+			</AnimatePresence>
 			{showSuccess && <Success showSuccessHandler={showSuccessHandler} />}
 		</header>
 	)

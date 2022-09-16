@@ -1,14 +1,16 @@
 import { nanoid } from '@reduxjs/toolkit'
 import emptyBox from 'assets/images/box.png'
 import CartProduct from 'components/cart/cartProduct'
+import { motion } from 'framer-motion'
 import { Fragment, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { HiArrowRight } from 'react-icons/hi'
+import { IoClose } from 'react-icons/io5'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearCart, getTotals } from 'store/features/cartSlice'
 import { changeStatus, order } from 'store/features/orderSlice'
 import Costs from './costs'
-import { IoClose } from 'react-icons/io5'
+import { fadeInOverlay, fadeInCartWindow } from 'helpers/animations'
 
 const Cart = ({ showCartHandler }) => {
 	const { cartItems } = useSelector((state) => state.cartSlice)
@@ -38,10 +40,21 @@ const Cart = ({ showCartHandler }) => {
 	}, [dispatch, cartItems])
 
 	return ReactDOM.createPortal(
-		<div className='fixed inset-0 bg-black/50 z-50' onClick={showCartHandler}>
-			<div
+		<motion.div
+			className='fixed inset-0 bg-black/50 z-50'
+			onClick={showCartHandler}
+			variants={fadeInOverlay}
+			initial='initial'
+			animate='animate'
+			exit='exit'
+		>
+			<motion.div
 				className='flex flex-col bg-white ml-auto sm:max-w-sm w-full p-8 h-full'
 				onClick={(e) => e.stopPropagation()}
+				variants={fadeInCartWindow}
+				initial='initial'
+				animate='animate'
+				exit='exit'
 			>
 				<div className='flex items-center justify-between 	mb-5'>
 					<h2 className='font-bold text-2xl'>Корзина</h2>
@@ -87,8 +100,8 @@ const Cart = ({ showCartHandler }) => {
 						</button>
 					)}
 				</div>
-			</div>
-		</div>,
+			</motion.div>
+		</motion.div>,
 		document.body
 	)
 }
